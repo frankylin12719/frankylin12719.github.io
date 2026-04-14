@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- SEO 核心优化 · 代码之域 -->
+    <title>THE CODE ZONE · 代码之域</title>
+    <meta name="description" content="THE CODE ZONE — 献给热爱体验、代码的人们。在赛博光影与古风留白间，庆祝代码之美。">
+    <meta name="keywords" content="Code,体验,赛博朋克,古风,极简,哲学,THE CODE ZONE">
+    <meta name="author" content="Flins">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://franklin12719.github.io">
+    <!-- Open Graph 优化 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="THE CODE ZONE · 代码之域">
+    <meta property="og:description" content="ALL IS WELL! 欢迎来到代码的庆典。">
+    <meta property="og:image" content="https://franklin12719.github.io/code.png">
+    <meta property="og:url" content="https://franklin12719.github.io">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="THE CODE ZONE">
+    <meta name="twitter:description" content="Code Analyzes All Things! 赛博 x 古风 · 代码之美">
+    <!-- 结构化数据 (JSON-LD) -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "THE CODE ZONE",
+    "alternateName": "代码之域",
+    "url": "https://franklin12719.github.io",
+    "description": "A celebration of code and the beauty of programming. 双主题切换 · 赛博与古风。",
+    "author": { "@type": "Person", "name": "Flins" },
+    "inLanguage": "zh-CN"
+  }
+  </script>
+    <!-- 字体与图标 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600&family=Orbitron:wght@400;600;800&family=Rajdhani:wght@400;600&family=ZCOOL+KuaiLe&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== 全局重置 & 一屏沉浸式布局 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            /* 彻底禁止滚动 */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.2s ease;
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        /* 主容器：flex列，占满视口 */
+        .app-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+
+        /* ===== 赛博朋克主题 (默认) ===== */
+        .theme-cyber {
+            --font-heading: 'Orbitron', 'Rajdhani', sans-serif;
+            --font-body: 'Rajdhani', 'Inter', sans-serif;
+            --bg-primary: #050a0f;
+            --bg-secondary: #0e171f;
+            --bg-card: rgba(8, 20, 30, 0.8);
+            --text-primary: #e3f2fd;
+            --text-secondary: #a0c8e0;
+            --accent-neon: #00f2fe;
+            --accent-purple: #b94eff;
+            --border-glow: 1px solid #00f2fe60;
+            --card-shadow: 0 0 30px rgba(0, 242, 254, 0.25);
+            --header-border: #1e4b5e;
+            --btn-bg: rgba(0, 242, 254, 0.08);
+            --btn-border: #00f2fe;
+            --footer-bg: #03090e;
+        }
+
+        .theme-cyber .site-header {
+            border-bottom: 2px solid var(--accent-neon);
+            box-shadow: 0 0 20px #00f2fe33;
+        }
+
+        .theme-cyber .hero-card {
+            backdrop-filter: blur(8px);
+            border: 1px solid #00f2fe60;
+        }
+
+        .theme-cyber .code-big {
+            text-shadow: 0 0 30px var(--accent-neon), 0 0 60px var(--accent-purple);
+        }
+
+        .theme-cyber .signature {
+            color: var(--accent-neon);
+        }
+
+        /* ===== 古风主题 ===== */
+        .theme-ancient {
+            --font-heading: 'Ma Shan Zheng', 'ZCOOL KuaiLe', cursive;
+            --font-body: 'Noto Serif SC', 'Times New Roman', serif;
+            --bg-primary: #f3ede5;
+            --bg-secondary: #e6dbcd;
+            --bg-card: rgba(250, 242, 230, 0.9);
+            --text-primary: #3c2e24;
+            --text-secondary: #6e5443;
+            --accent-ink: #5d4433;
+            --accent-gold: #b39274;
+            --border-light: 1px solid #d4c0ae;
+            --card-shadow: 0 12px 24px rgba(80, 50, 30, 0.08);
+            --header-border: #bfaa98;
+            --btn-bg: #e0d2c2;
+            --btn-border: #8f735c;
+            --footer-bg: #e2d3c4;
+        }
+
+        .theme-ancient .site-header {
+            border-bottom: 2px solid var(--accent-ink);
+            background: linear-gradient(to bottom, #fbf5ec, #ede1d4);
+        }
+
+        .theme-ancient .hero-card {
+            background: var(--bg-card);
+            border: 1px solid #cfbcab;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(4px);
+        }
+
+        .theme-ancient .code-big {
+            color: #5d4433;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-ancient .signature {
+            color: #7a5e4c;
+        }
+
+        .theme-ancient .site-title {
+            color: #4d382b;
+            text-shadow: 2px 2px 0 #e7d9cc;
+        }
+
+        /* ===== 公共样式 (一屏适配) ===== */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+        }
+
+        /* 头部区域 — 固定高度，不收缩 */
+        .site-header {
+            flex-shrink: 0;
+            padding: 1.2vh 4px;
+            backdrop-filter: blur(8px);
+            background: var(--bg-secondary);
+            border-radius: 0 0 30px 30px;
+        }
+
+        .header-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4px;
+        }
+
+        .site-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--accent-neon, #00f2fe), var(--accent-purple, #b94eff));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.2s;
+        }
+
+        .theme-ancient .site-title {
+            background: none;
+            -webkit-text-fill-color: #4d382b;
+            color: #4d382b;
+        }
+
+        /* 导航链接（当前无链接，保留样式） */
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-weight: 500;
+        }
+
+        /* 主题切换按钮组 */
+        .theme-switch {
+            display: flex;
+            gap: 10px;
+        }
+
+        .theme-btn {
+            background: var(--btn-bg);
+            border: 1.5px solid var(--btn-border);
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 40px;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            transition: all 0.25s;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+        }
+
+        .theme-btn i {
+            font-size: 1.3rem;
+        }
+
+        .theme-btn.active {
+            background: var(--accent-neon);
+            color: #050a0f;
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 16px var(--accent-neon);
+        }
+
+        .theme-ancient .theme-btn.active {
+            background: #7c6352;
+            color: #fcf6ed;
+            border-color: #5f4537;
+            box-shadow: 0 6px 14px rgba(90, 60, 30, 0.2);
+        }
+
+        /* 主内容区域 — 占据剩余高度，垂直居中 */
+        .main-content {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 0;
+            /* 防止flex溢出 */
+            margin: 0;
+        }
+
+        .hero-card {
+            width: 100%;
+            padding: 3vh 2.5rem;
+            border-radius: 48px;
+            background: var(--bg-card);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .code-big {
+            font-family: var(--font-heading);
+            font-size: 20vh;
+            /* 视口高度相对单位，完美适应 */
+            font-weight: 800;
+            line-height: 1;
+            margin: 0 0 1vh;
+            letter-spacing: -5px;
+            color: var(--accent-neon);
+        }
+
+        .theme-ancient .code-big {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 19vh;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 8vw, 4rem);
+            margin-bottom: 0.8vh;
+            letter-spacing: 2px;
+        }
+
+        .hero-quote {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-style: italic;
+            margin-bottom: 1.5vh;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .hero-welcome {
+            font-size: clamp(1rem, 3.5vw, 1.5rem);
+            margin: 2vh 0 1.5vh;
+        }
+
+        .divider {
+            width: 120px;
+            height: 2px;
+            background: var(--accent-neon);
+            margin: 2vh auto;
+            opacity: 0.5;
+        }
+
+        .theme-ancient .divider {
+            background: #b39274;
+        }
+
+        .hero-motto {
+            font-size: clamp(1.6rem, 5vw, 2.4rem);
+            font-family: var(--font-heading);
+            margin: 1.5vh 0 2.5vh;
+        }
+
+        .signature {
+            margin-top: 2.5vh;
+            font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+            font-family: var(--font-heading);
+            letter-spacing: 4px;
+        }
+
+        .signature i {
+            margin: 0 8px;
+        }
+
+        /* 针对超小屏幕（高度不足）进一步压缩 */
+        @media (max-height: 600px) {
+            .site-header {
+                padding: 0.8vh 0;
+            }
+
+            .code-big {
+                font-size: 15vh;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-quote {
+                font-size: 1.2rem;
+                margin-bottom: 0.5vh;
+            }
+
+            .hero-welcome {
+                font-size: 1rem;
+                margin: 1vh 0;
+            }
+
+            .hero-motto {
+                font-size: 1.6rem;
+                margin: 1vh 0 1.5vh;
+            }
+
+            .hero-card {
+                padding: 2vh 1.5rem;
+            }
+
+            .signature {
+                margin-top: 1.5vh;
+            }
+        }
+
+        /* 窄屏适配 */
+        @media (max-width: 600px) {
+            .app-wrapper {
+                padding: 0 16px;
+            }
+
+            .header-inner {
+                gap: 8px;
+            }
+
+            .hero-card {
+                padding: 2.5vh 1.2rem;
+            }
+
+            .code-big {
+                font-size: 16vh;
+            }
+        }
+
+        /* 赛博扫描线效果 (装饰) */
+        .theme-cyber .app-wrapper::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(0deg, rgba(0, 242, 254, 0.015) 0px, transparent 2px);
+            z-index: 9999;
+        }
+
+        /* 移除所有可能导致溢出的外边距 */
+        .site-header,
+        .main-content {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class="theme-cyber">
+    <div class="app-wrapper">
+        <!-- 头部：极简导航 + 主题切换 -->
+        <header class="site-header">
+            <div class="header-inner">
+                <div class="site-title">
+                    <i class="fas fa-code"></i> THE CODE ZONE
+                </div>
+                <!-- 导航链接已留空，但保留容器 -->
+                <nav class="nav-links"></nav>
+                <div class="theme-switch">
+                    <button class="theme-btn active" id="cyberBtn" aria-label="切换到赛博风格" title="赛博光影"><i
+                            class="fas fa-bolt"></i></button>
+                    <button class="theme-btn" id="ancientBtn" aria-label="切换到古风风格" title="古风墨韵"><i
+                            class="fas fa-feather-alt"></i></button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 核心内容：代码庆典 · 垂直居中 -->
+        <main class="main-content">
+            <div class="hero-card">
+                <h1 class="hero-title">Coding...</h1>
+                <div class="code-big">&lt;/&gt;</div>
+                <div class="hero-quote">
+                    ALL IS WELL
+                </div>
+                <div class="divider"></div>
+                <p class="hero-welcome">
+                    <i class="fas fa-star" style="margin:0 10px;"></i>
+                    Welcome to a celebration of CODES.
+                    <i class="fas fa-star" style="margin:0 10px;"></i>
+                </p>
+                <div class="hero-motto">
+                    <span>Code</span> <span style="margin:0 12px;">Analyzes</span> <span>All Things</span>
+                </div>
+                <div class="signature">
+                    <i class="fas fa-pen-fade"></i> Made by Flins <i class="fas fa-pen-fade"></i>
+                </div>
+            </div>
+        </main>
+        <!-- 无页脚，保持极致一屏 -->
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            const body = document.body;
+            const cyberBtn = document.getElementById('cyberBtn');
+            const ancientBtn = document.getElementById('ancientBtn');
+
+            const THEME_CYBER = 'theme-cyber';
+            const THEME_ANCIENT = 'theme-ancient';
+            const STORAGE_KEY = 'code-zone-theme';
+
+            function setActiveButton(theme) {
+                const isCyber = theme === THEME_CYBER;
+                cyberBtn.classList.toggle('active', isCyber);
+                ancientBtn.classList.toggle('active', !isCyber);
+            }
+
+            function switchTheme(theme) {
+                body.classList.remove(THEME_CYBER, THEME_ANCIENT);
+                body.classList.add(theme);
+                setActiveButton(theme);
+
+                try {
+                    localStorage.setItem(STORAGE_KEY, theme);
+                } catch (e) { }
+
+                cyberBtn.setAttribute('aria-pressed', theme === THEME_CYBER);
+                ancientBtn.setAttribute('aria-pressed', theme === THEME_ANCIENT);
+            }
+
+            cyberBtn.addEventListener('click', () => switchTheme(THEME_CYBER));
+            ancientBtn.addEventListener('click', () => switchTheme(THEME_ANCIENT));
+
+            // 初始化主题 (记忆上次选择)
+            (function init() {
+                let saved;
+                try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { saved = null; }
+                const isValid = saved === THEME_CYBER || saved === THEME_ANCIENT;
+                const initial = isValid ? saved : THEME_CYBER;
+
+                body.classList.remove(THEME_CYBER, THEME_ANCIENT);
+                body.classList.add(initial);
+                setActiveButton(initial);
+                cyberBtn.setAttribute('aria-pressed', initial === THEME_CYBER);
+                ancientBtn.setAttribute('aria-pressed', initial === THEME_ANCIENT);
+
+                // 在原有 script 标签内部添加以下代码（位于主题初始化之后）
+
+                // JavaScript 关键字词库
+                const jsKeywords = [
+                    'function', 'const', 'let', 'var', 'return', 'if', 'else', 'for', 'while',
+                    'do', 'switch', 'case', 'break', 'continue', 'try', 'catch', 'finally',
+                    'throw', 'new', 'this', 'typeof', 'instanceof', 'delete', 'void', 'null',
+                    'undefined', 'true', 'false', 'import', 'export', 'default', 'class',
+                    'extends', 'super', 'static', 'get', 'set', 'async', 'await', 'yield',
+                    'arguments', 'eval', 'debugger', 'with', 'NaN', 'Infinity'
+                ];
+
+                const codeBigElement = document.querySelector('.code-big');
+                let intervalId = null;
+
+                // 随机更新关键字
+                function updateCodeKeyword() {
+                    if (codeBigElement) {
+                        const randomIndex = Math.floor(Math.random() * jsKeywords.length);
+                        codeBigElement.textContent = jsKeywords[randomIndex];
+                    }
+                }
+
+                // 启动轮换（每2秒）
+                function startKeywordRotation() {
+                    if (intervalId) clearInterval(intervalId);
+                    updateCodeKeyword(); // 立即更新一次
+                    intervalId = setInterval(updateCodeKeyword, 2000);
+                }
+
+                // 停止轮换（若需要）
+                function stopKeywordRotation() {
+                    if (intervalId) {
+                        clearInterval(intervalId);
+                        intervalId = null;
+                    }
+                }
+
+                // 页面加载后启动
+                window.addEventListener('DOMContentLoaded', () => {
+                    // 初始显示 </> 已经存在，稍作延迟后开始切换，或者直接开始切换（立即覆盖）
+                    // 为了保留初始 </> 短暂可见，可延迟500ms再启动
+                    setTimeout(startKeywordRotation, 500);
+                });
+            })();
+
+        })();
+    </script>
+    <noscript>
+        <style>
+            .theme-switch {
+                opacity: 0.7;
+                pointer-events: none;
+            }
+        </style>
+    </noscript>
+</body>
+
+</html>
